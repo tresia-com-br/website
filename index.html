@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TRESIA — Gestão de demandas automatizada por IA</title>
-<meta name="description" content="A TRESIA desenvolve soluções com infraestrutura de LLMs para automatizar a gestão de demandas, conectar agentes e acompanhar cada etapa com rastreabilidade.">
+<title>TRESIA — Soluções de IA para o seu negócio</title>
+<meta name="description" content="A TRESIA desenvolve soluções de inteligência artificial para organizar demandas, gerar relatórios e automatizar processos com segurança.">
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
 :root {
@@ -101,14 +101,8 @@ header {
 .hero-card::before { content: ""; position: absolute; inset: 0; border-radius: 24px; padding: 2px; background: linear-gradient(135deg, var(--purple), var(--orange)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
 .hero-card .logo-wrap { margin-bottom: 28px; }
 .hero-card .logo-wrap img { height: 46px; width: auto; display: block; }
-.hero-card ul { list-style: none; display: grid; gap: 14px; }
-.hero-card ul li { display: flex; gap: 12px; align-items: flex-start; font-size: .97rem; }
-.hero-card ul li .dot {
-  flex: none; width: 22px; height: 22px; border-radius: 50%; margin-top: 2px;
-  display: grid; place-items: center; font-size: .72rem; font-weight: 900; color: #fff;
-  background: linear-gradient(135deg, var(--purple), #9b3fd4);
-}
-.hero-card ul li:nth-child(2) .dot { background: linear-gradient(135deg, var(--orange), var(--orange-light)); color: #3d2100; }
+.hero-illustration { width: 100%; margin-top: 8px; }
+.hero-illustration svg { width: 100%; height: auto; display: block; }
 
 /* ===== Section base ===== */
 section { padding: 92px 0; }
@@ -201,8 +195,7 @@ footer { background: var(--purple-dark); color: #d8c9ea; padding: 44px 0 30px; }
     </button>
     <nav class="nav-links" id="nav-menu">
       <a href="#topo">Início</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#diferenciais">Diferenciais</a>
+      <a href="#solucoes">Soluções</a>
       <a href="#contato">Contato</a>
       <a class="btn btn-primary" href="#contato">Fale conosco</a>
     </nav>
@@ -213,12 +206,12 @@ footer { background: var(--purple-dark); color: #d8c9ea; padding: 44px 0 30px; }
 <section class="hero" id="topo">
   <div class="container hero-grid">
     <div>
-      <span class="eyebrow">Infraestrutura de LLMs &amp; Automação</span>
-      <h1>Gestão de demandas com IA, do <span class="grad">pedido ao resultado</span></h1>
-      <p class="sub">A TRESIA desenvolve soluções que entendem solicitações por voz ou texto, organizam cada demanda, acionam agentes especializados e mantêm todo o ciclo rastreável.</p>
+      <span class="eyebrow">Soluções de IA &amp; Automação</span>
+      <h1>Gestão com IA, do <span class="grad">pedido ao resultado</span></h1>
+      <p class="sub">A TRESIA desenvolve soluções de IA que organizam demandas, automatizam processos e transformam dados em relatórios e decisões.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#contato">Solicitar orçamento</a>
-        <a class="btn btn-outline" href="#servicos">Conhecer serviços</a>
+        <a class="btn btn-outline" href="#solucoes">Conhecer soluções</a>
       </div>
       <div class="hero-badge"><span>&#10003;</span> Empresa ativa e regularizada &nbsp;&bull;&nbsp; <span>&#10003;</span> Sede em Itabira, MG</div>
     </div>
@@ -226,60 +219,95 @@ footer { background: var(--purple-dark); color: #d8c9ea; padding: 44px 0 30px; }
       <div class="logo-wrap">
         <img src="logo.webp" width="700" height="278" alt="TRESIA — Inteligência Artificial">
       </div>
-      <ul>
-        <li><span class="dot">1</span><div><strong>Entrada simples</strong><br>A pessoa descreve o que precisa por voz ou texto, sem depender de formulários complexos.</div></li>
-        <li><span class="dot">2</span><div><strong>Orquestração inteligente</strong><br>A infraestrutura de LLMs interpreta a intenção, classifica a demanda e encaminha para o agente ou equipe adequada.</div></li>
-        <li><span class="dot">3</span><div><strong>Visibilidade e controle</strong><br>Status, mensagens, aprovações e histórico ficam centralizados para acompanhar cada etapa.</div></li>
-      </ul>
+      <div class="hero-illustration">
+        <svg viewBox="0 0 440 240" xmlns="http://www.w3.org/2000/svg" aria-label="Fluxo de gestão com IA: entrada, processamento e resultado">
+          <defs>
+            <linearGradient id="gradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#64049f;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#9b3fd4;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#ff7c06;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#ffa654;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <circle cx="220" cy="120" r="90" fill="#f3eafc" opacity="0.6"/>
+          <circle cx="80" cy="120" r="50" fill="#fff" stroke="#eadff2" stroke-width="2"/>
+          <circle cx="360" cy="120" r="50" fill="#fff" stroke="#eadff2" stroke-width="2"/>
+          <path d="M130 120 L160 120" stroke="#c9aede" stroke-width="3" stroke-dasharray="6 4"/>
+          <path d="M280 120 L310 120" stroke="#c9aede" stroke-width="3" stroke-dasharray="6 4"/>
+          <polygon points="160,120 152,115 152,125" fill="#c9aede"/>
+          <polygon points="310,120 302,115 302,125" fill="#c9aede"/>
+          <rect x="40" y="85" width="80" height="70" rx="14" fill="#fff" stroke="#64049f" stroke-width="2"/>
+          <circle cx="80" cy="110" r="16" fill="url(#gradPurple)"/>
+          <rect x="76" y="101" width="8" height="14" rx="4" fill="#fff"/>
+          <path d="M76 115 L76 118 Q76 122 80 122 Q84 122 84 118 L84 115" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M80 122 L80 126 M76 126 L84 126" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <path d="M88 106 Q92 110 88 114" stroke="#ffa654" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M92 103 Q97 110 92 117" stroke="#ff7c06" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <rect x="62" y="130" width="36" height="6" rx="3" fill="#eadff2"/>
+          <rect x="70" y="140" width="20" height="6" rx="3" fill="#eadff2"/>
+          <circle cx="220" cy="120" r="90" fill="#f3eafc" opacity="0.8"/>
+          <circle cx="220" cy="120" r="60" fill="url(#gradPurple)"/>
+          <circle cx="220" cy="120" r="46" fill="#fff"/>
+          <circle cx="220" cy="120" r="58" fill="none" stroke="#c9aede" stroke-width="2" stroke-dasharray="3 6"/>
+          <path d="M220 92 L220 104 M220 136 L220 148 M192 120 L204 120 M236 120 L248 120 M203 95 L211 103 M229 137 L237 145 M203 145 L211 137 M229 103 L237 95" stroke="#64049f" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="220" cy="120" r="12" fill="url(#gradOrange)"/>
+          <circle cx="220" cy="120" r="5" fill="#fff"/>
+          <circle cx="220" cy="66" r="4" fill="url(#gradPurple)"/>
+          <circle cx="174" cy="120" r="4" fill="url(#gradPurple)"/>
+          <circle cx="266" cy="120" r="4" fill="url(#gradPurple)"/>
+          <line x1="220" y1="70" x2="220" y2="60" stroke="#c9aede" stroke-width="1.5"/>
+          <line x1="178" y1="120" x2="166" y2="120" stroke="#c9aede" stroke-width="1.5"/>
+          <line x1="262" y1="120" x2="274" y2="120" stroke="#c9aede" stroke-width="1.5"/>
+          <rect x="320" y="85" width="80" height="70" rx="14" fill="#fff" stroke="#ff7c06" stroke-width="2"/>
+          <rect x="340" y="130" width="10" height="16" rx="2" fill="#eadff2"/>
+          <rect x="355" y="120" width="10" height="26" rx="2" fill="url(#gradOrange)"/>
+          <rect x="370" y="110" width="10" height="36" rx="2" fill="url(#gradPurple)"/>
+          <path d="M338 118 L348 108 L358 116 L368 104" stroke="#ff7c06" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="80" y="180" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="13" font-weight="700" fill="#1a1030">Entrada</text>
+          <text x="80" y="194" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="11" fill="#5b5470">Por voz ou texto</text>
+          <text x="220" y="196" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="13" font-weight="700" fill="#1a1030">Processamento</text>
+          <text x="220" y="210" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="11" fill="#5b5470">IA organiza e direciona</text>
+          <text x="360" y="180" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="13" font-weight="700" fill="#1a1030">Resultado</text>
+          <text x="360" y="194" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="11" fill="#5b5470">Decisões e relatórios</text>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SERVIÇOS -->
-<section class="services" id="servicos">
+<!-- SOLUÇÕES -->
+<section class="services" id="solucoes">
   <div class="container">
     <div class="section-head">
-      <div class="tag">Gestão automatizada de demandas</div>
-      <h2>Automação que entende o trabalho por trás de cada pedido</h2>
-      <p>Mapeamos seu processo e construímos a combinação certa de LLMs, agentes, dados e integrações para reduzir retrabalho sem perder o controle.</p>
+      <div class="tag">Nossas soluções</div>
+      <h2>Soluções de IA que organizam, automatizam e informam</h2>
+      <p>Conheça o que a TRESIA entrega e como cada solução funciona na prática.</p>
     </div>
+
     <div class="cards">
       <div class="card">
         <span class="num">01</span>
         <div class="icon">&#60;&#47;&#62;</div>
-        <h3>Orquestração de demandas</h3>
-        <p>Entradas por chat, voz ou texto viram demandas estruturadas, com classificação, prioridade, responsáveis e estados acompanhados do início ao encerramento.</p>
+        <h3>Gerenciador de demandas</h3>
+        <p>Centralize pedidos, tarefas e solicitações em um só lugar, com acompanhamento de cada etapa até a conclusão.</p>
       </div>
       <div class="card">
         <span class="num">02</span>
         <div class="icon">&#9672;</div>
-        <h3>Agentes de IA especializados</h3>
-        <p>Módulos autônomos validam contexto, executam tarefas específicas, consultam integrações e devolvem resultados em linguagem natural.</p>
+        <h3>Gerador de relatórios dinâmicos</h3>
+        <p>Transforme dados da sua operação em relatórios claros e atualizados, prontos para apoiar decisões.</p>
       </div>
       <div class="card">
         <span class="num">03</span>
         <div class="icon">&#9670;</div>
-        <h3>Dados, integrações e melhoria contínua</h3>
-        <p>Conectamos APIs e persistimos mensagens, transições e resultados para gerar visibilidade operacional, identificar gargalos e orientar otimizações.</p>
+        <h3>Customização de IAs agenticas</h3>
+        <p>Adaptamos inteligências artificiais ao seu processo, para automatizar tarefas com o seu contexto e as suas regras.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- DIFERENCIAIS -->
-<section id="diferenciais">
-  <div class="container">
-    <div class="section-head">
-      <div class="tag">Como funciona</div>
-      <h2>Mais simples para quem solicita, mais controle para quem gerencia</h2>
-      <p>Uma camada conversacional reduz a fricção na entrada; a orquestração e os registros dão visibilidade à operação.</p>
-    </div>
-    <div class="diff-grid">
-      <div class="diff"><div class="em">&#128172;</div><h4>Conversa como interface</h4><p>Solicite, consulte e atualize demandas por voz ou texto, com uma experiência mais natural.</p></div>
-      <div class="diff"><div class="em">&#128269;</div><h4>Roteamento com contexto</h4><p>A IA interpreta a intenção e direciona cada demanda ao fluxo, agente ou equipe mais adequado.</p></div>
-      <div class="diff"><div class="em">&#9881;</div><h4>Automação com supervisão</h4><p>Tarefas repetitivas podem seguir fluxos automatizados; ações críticas podem exigir confirmação humana.</p></div>
-      <div class="diff"><div class="em">&#128200;</div><h4>Histórico que gera melhoria</h4><p>Status, tempos, transições e feedback ajudam a encontrar gargalos e evoluir a operação com dados.</p></div>
-    </div>
+
   </div>
 </section>
 
@@ -289,7 +317,7 @@ footer { background: var(--purple-dark); color: #d8c9ea; padding: 44px 0 30px; }
     <div>
       <div class="tag tag-on-dark">Vamos conversar</div>
       <h2>Pronto para automatizar suas demandas?</h2>
-      <p class="lead">Conte como sua equipe recebe pedidos, aprovações e tarefas hoje. A TRESIA mapeia o fluxo e desenha uma solução com LLMs, agentes e integrações na medida da sua operação.</p>
+      <p class="lead">Conte como sua equipe recebe pedidos e tarefas hoje. A TRESIA mapeia o fluxo e desenha a solução de IA na medida da sua operação.</p>
       <p class="k">Telefone / WhatsApp</p>
       <p class="v"><a href="tel:+5531992263444">(31) 99226-3444</a></p>
       <p class="k">E-mail</p>
@@ -301,8 +329,8 @@ footer { background: var(--purple-dark); color: #d8c9ea; padding: 44px 0 30px; }
       <h3>&#128172; Comece pelo seu fluxo</h3>
       <ul>
         <li>&#10003;&nbsp; Conte um processo repetitivo ou um gargalo de atendimento.</li>
-        <li>&#10003;&nbsp; Mapeamos entradas, regras, responsáveis e pontos de aprovação.</li>
-        <li>&#10003;&nbsp; Receba uma proposta clara para automatizar com rastreabilidade.</li>
+        <li>&#10003;&nbsp; Mapeamos o processo e propomos a automação ideal para o seu caso.</li>
+        <li>&#10003;&nbsp; Receba uma proposta clara para automatizar com acompanhamento.</li>
       </ul>
       <div class="contact-card-cta">
         <a class="btn btn-orange" href="https://wa.me/5531992263444?text=Ol%C3%A1%2C%20quero%20conversar%20sobre%20automa%C3%A7%C3%A3o%20de%20demandas%20com%20IA" target="_blank" rel="noopener">Chamar no WhatsApp</a>
@@ -322,8 +350,8 @@ footer { background: var(--purple-dark); color: #d8c9ea; padding: 44px 0 30px; }
       </div>
       <div>
         <h5>Navegação</h5>
-        <a href="#servicos">Serviços</a>
-        <a href="#diferenciais">Diferenciais</a>
+        <a href="#topo">Início</a>
+        <a href="#solucoes">Soluções</a>
         <a href="#contato">Contato</a>
       </div>
       <div>
@@ -369,7 +397,7 @@ footer { background: var(--purple-dark); color: #d8c9ea; padding: 44px 0 30px; }
   }
 
   // Simple scroll-spy for one-page navigation
-  const sections = ['topo', 'servicos', 'diferenciais', 'contato']
+  const sections = ['topo', 'solucoes', 'contato']
     .map(id => document.getElementById(id))
     .filter(Boolean);
   const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
