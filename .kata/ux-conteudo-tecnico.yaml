@@ -1,0 +1,84 @@
+schema_version: 1
+task: ux-conteudo-tecnico
+status: approved
+domain: coding
+done: "O texto 'IAs agenticas' passa a 'IAs agênticas'; o head tem og:title, og:description, og:type, og:url e canonical; o CSS morto da seção Diferenciais (.diff*) é removido; o style inline do rodapé vai para o CSS; o endereço da seção de contato tem link para busca no Google Maps. Verificado por leitura do HTML e Playwright (sem erros no console, sem mudança visual)."
+kata_version: ''
+fit:
+  trivial: false
+  route: code-loop
+  reason: "Correções de texto, metadados e limpeza de CSS em index.html."
+  answered: false
+  skipped: true
+think:
+  problem: "Erro de grafia, ausência de metadados de compartilhamento, CSS sem uso e estilo inline."
+  assumptions:
+    - "A grafia correta em português é 'agênticas'."
+    - "Remover o CSS não usado não altera a aparência, pois nenhum elemento .diff existe no HTML."
+  alternatives:
+    - "Remover .diff* (escolhida) ou reintroduzir a seção Diferenciais (exige conteúdo)."
+  unknowns: "og:image: não há imagem de compartilhamento no repositório; o campo fica fora desta tarefa até o usuário fornecer um arquivo."
+  answered: false
+  skipped: true
+simplify:
+  minimum_code: true
+  no_single_use_abstractions: true
+  no_speculative_config: true
+  notes: ""
+  answered: false
+  skipped: false
+intent:
+  code_does: "Grafia 'agenticas', ausência de og:*, regras CSS .diff* sem elementos, estilo inline no rodapé."
+  check_expects: "Verificação observacional."
+  spec_says: "Revisão de conteúdo e técnico, itens 1, 3, 4 e 5."
+  all_agree: true
+  conflict_resolution: ""
+  answered: false
+  skipped: false
+surgical:
+  files:
+    - index.html
+  removed_imports_clean: true
+  answered: false
+  skipped: false
+verify:
+  ruff_clean: null
+  typecheck_clean: null
+  tests_pass: null
+  coverage_pct: null
+  coverage_pass: null
+  success_criteria_met: true
+  attempts: 1
+  hand_back: false
+  gate_used: null
+  commands: {"playwright": "canonical, og:title, og:url presentes; og:image ausente (pendente); CSS .diff removido; footer sem style inline (margin-top 12px); endereço linka ao Maps em nova aba; 'agênticas' corrigido; sem overflow em 390px", "lint": "n/a (sem código Python)", "test": "n/a (sem suíte de testes)"}
+  ran_at: '2026-11-06T02:44:58Z'
+auth:
+  action_taken: false
+  authorized: false
+  action: ''
+  quote: ''
+pending:
+  action: "og:image pendente: fornecer imagem de compartilhamento (1200x630)."
+  documented: false
+twins:
+  searched: false
+  pattern: ''
+  result: ''
+  defect_fixed: false
+  matches_count: 0
+  files_count: 0
+  fix_applied: false
+preflight:
+  skills_missing: []
+artifact:
+  intent_owed: false
+  intent_present: false
+  auth_owed: false
+  auth_present: false
+  pending_owed: false
+  pending_present: false
+  twins_owed: false
+  twins_present: false
+base_commit: 4531120acfc5162095c398952394af12b4143b6c
+approved_commit: cd72ac0
