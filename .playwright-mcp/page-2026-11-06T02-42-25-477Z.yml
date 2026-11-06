@@ -1,0 +1,119 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - link [ref=f1e4] [cursor=pointer]:
+        - /url: "#topo"
+        - img "TRESIA — Inteligência Artificial" [ref=f1e5]
+      - navigation [ref=f1e6]:
+        - link "Início" [ref=f1e7] [cursor=pointer]:
+          - /url: "#topo"
+        - link "Soluções" [ref=f1e8] [cursor=pointer]:
+          - /url: "#solucoes"
+        - link "Contato" [ref=f1e9] [cursor=pointer]:
+          - /url: "#contato"
+        - link "Fale conosco" [ref=f1e10] [cursor=pointer]:
+          - /url: "#contato"
+  - main [ref=f1e11]:
+    - generic [ref=f1e13]:
+      - generic [ref=f1e14]:
+        - generic [ref=f1e15]: Soluções de IA & Automação
+        - heading "Gestão com IA, do pedido ao resultado" [level=1] [ref=f1e16]
+        - paragraph [ref=f1e17]: A TRESIA desenvolve soluções de IA que organizam demandas, automatizam processos e transformam dados em relatórios e decisões.
+        - generic [ref=f1e18]:
+          - link "Solicitar orçamento" [ref=f1e19] [cursor=pointer]:
+            - /url: "#contato"
+          - link "Conhecer soluções" [ref=f1e20] [cursor=pointer]:
+            - /url: "#solucoes"
+        - generic [ref=f1e21]:
+          - generic [aria-hidden] [ref=f1e22]: ✓
+          - text: Empresa ativa e regularizada •
+          - generic [aria-hidden] [ref=f1e23]: ✓
+          - text: Sede em Itabira, MG
+      - generic [ref=f1e27]:
+        - generic [ref=f1e28]:
+          - generic [ref=f1e34]:
+            - strong [ref=f1e35]: Entrada
+            - generic [ref=f1e36]: Voz ou texto
+          - text: ›
+        - generic [ref=f1e37]:
+          - generic [ref=f1e44]:
+            - strong [ref=f1e45]: Processamento
+            - generic [ref=f1e46]: IA organiza e direciona
+          - text: ›
+        - generic [ref=f1e53]:
+          - strong [ref=f1e54]: Resultado
+          - generic [ref=f1e55]: Decisões e relatórios
+    - generic [ref=f1e57]:
+      - generic [ref=f1e58]:
+        - generic [ref=f1e59]: Nossas soluções
+        - heading "Soluções de IA que organizam, automatizam e informam" [level=2] [ref=f1e60]
+        - paragraph [ref=f1e61]: Conheça o que a TRESIA entrega e como cada solução funciona na prática.
+      - generic [ref=f1e62]:
+        - generic [ref=f1e63]:
+          - generic [aria-hidden] [ref=f1e64]: "01"
+          - heading "Gerenciador de demandas" [level=3] [ref=f1e70]
+          - paragraph [ref=f1e71]: Centralize pedidos, tarefas e solicitações em um só lugar, com acompanhamento de cada etapa até a conclusão.
+        - generic [ref=f1e72]:
+          - generic [aria-hidden] [ref=f1e73]: "02"
+          - heading "Gerador de relatórios dinâmicos" [level=3] [ref=f1e78]
+          - paragraph [ref=f1e79]: Transforme dados da sua operação em relatórios claros e atualizados, prontos para apoiar decisões.
+        - generic [ref=f1e80]:
+          - generic [aria-hidden] [ref=f1e81]: "03"
+          - heading "Customização de IAs agenticas" [level=3] [ref=f1e89]
+          - paragraph [ref=f1e90]: Adaptamos inteligências artificiais ao seu processo, para automatizar tarefas com o seu contexto e as suas regras.
+    - generic [ref=f1e92]:
+      - generic [ref=f1e93]:
+        - generic [ref=f1e94]: Vamos conversar
+        - heading "Pronto para automatizar suas demandas?" [level=2] [ref=f1e95]
+        - paragraph [ref=f1e96]: Conte como sua equipe recebe pedidos e tarefas hoje. A TRESIA mapeia o fluxo e desenha a solução de IA na medida da sua operação.
+        - paragraph [ref=f1e97]: Telefone / WhatsApp
+        - paragraph [ref=f1e98]:
+          - link "(31) 99226-3444" [ref=f1e99] [cursor=pointer]:
+            - /url: tel:+5531992263444
+        - paragraph [ref=f1e100]: E-mail
+        - paragraph [ref=f1e101]:
+          - link "contato@tresia.com.br" [ref=f1e102] [cursor=pointer]:
+            - /url: mailto:contato@tresia.com.br
+        - paragraph [ref=f1e103]: Localização
+        - paragraph [ref=f1e104]: Av. João Soares Silva, 29 — Penha, Itabira, MG
+      - generic [ref=f1e105]:
+        - heading "Comece pelo seu fluxo" [level=3] [ref=f1e106]:
+          - generic [aria-hidden] [ref=f1e107]: 💬
+          - text: Comece pelo seu fluxo
+        - list [ref=f1e108]:
+          - listitem [ref=f1e109]:
+            - generic [aria-hidden] [ref=f1e110]: ✓
+            - text: Conte um processo repetitivo ou um gargalo de atendimento.
+          - listitem [ref=f1e111]:
+            - generic [aria-hidden] [ref=f1e112]: ✓
+            - text: Mapeamos o processo e propomos a automação ideal para o seu caso.
+          - listitem [ref=f1e113]:
+            - generic [aria-hidden] [ref=f1e114]: ✓
+            - text: Receba uma proposta clara para automatizar com acompanhamento.
+        - generic [ref=f1e115]:
+          - link "Chamar no WhatsApp" [ref=f1e116] [cursor=pointer]:
+            - /url: https://wa.me/5531992263444?text=Ol%C3%A1%2C%20quero%20conversar%20sobre%20automa%C3%A7%C3%A3o%20de%20demandas%20com%20IA
+          - link "Enviar e-mail" [ref=f1e117] [cursor=pointer]:
+            - /url: mailto:contato@tresia.com.br
+  - contentinfo [ref=f1e118]:
+    - generic [ref=f1e119]:
+      - generic [ref=f1e120]:
+        - generic [ref=f1e121]:
+          - link [ref=f1e122] [cursor=pointer]:
+            - /url: "#topo"
+            - img "TRESIA — Inteligência Artificial" [ref=f1e123]
+          - paragraph [ref=f1e124]: Gestão de demandas, automação por IA e software sob medida para empresas que querem operar com mais clareza e escala.
+        - navigation "Rodapé" [ref=f1e126]:
+          - heading "Navegação" [level=5] [ref=f1e127]
+          - link "Início" [ref=f1e128] [cursor=pointer]:
+            - /url: "#topo"
+          - link "Soluções" [ref=f1e129] [cursor=pointer]:
+            - /url: "#solucoes"
+          - link "Contato" [ref=f1e130] [cursor=pointer]:
+            - /url: "#contato"
+        - generic [ref=f1e131]:
+          - heading "Empresa" [level=5] [ref=f1e132]
+          - paragraph [ref=f1e133]: TRESIA Inteligência Artificial Ltda
+          - paragraph [ref=f1e134]: CNPJ 68.098.068/0001-99
+          - paragraph [ref=f1e135]: Itabira, MG
+      - generic [ref=f1e136]: © 2026 TRESIA Inteligência Artificial Ltda — Todos os direitos reservados.
