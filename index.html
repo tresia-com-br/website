@@ -242,6 +242,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </header>
 
+<main>
 <!-- HERO -->
 <section class="hero" id="topo">
   <div class="container hero-grid">
@@ -253,13 +254,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="btn btn-primary" href="#contato">Solicitar orçamento</a>
         <a class="btn btn-outline" href="#solucoes">Conhecer soluções</a>
       </div>
-      <div class="hero-badge"><span>&#10003;</span> Empresa ativa e regularizada &nbsp;&bull;&nbsp; <span>&#10003;</span> Sede em Itabira, MG</div>
+      <div class="hero-badge"><span aria-hidden="true">&#10003;</span> Empresa ativa e regularizada &nbsp;&bull;&nbsp; <span aria-hidden="true">&#10003;</span> Sede em Itabira, MG</div>
     </div>
     <div class="hero-card">
       <div class="logo-wrap">
-        <img src="logo.webp" width="700" height="278" alt="TRESIA — Inteligência Artificial">
+        <img src="logo.webp" width="700" height="278" alt="">
       </div>
-      <div class="hero-illustration" aria-label="Fluxo de gestão com IA">
+      <div class="hero-illustration">
         <div class="flow-layout">
           <div class="flow-step">
             <svg viewBox="0 0 80 80" aria-hidden="true">
@@ -306,19 +307,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="cards">
       <div class="card">
-        <span class="num">01</span>
+        <span class="num" aria-hidden="true">01</span>
         <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="5" width="20" height="22" rx="3"/><path d="M11 12h10M11 17h10M11 22h6"/><circle class="icon-motion" cx="24" cy="23" r="4" fill="currentColor" stroke="none"/></svg></div>
         <h3>Gerenciador de demandas</h3>
         <p>Centralize pedidos, tarefas e solicitações em um só lugar, com acompanhamento de cada etapa até a conclusão.</p>
       </div>
       <div class="card">
-        <span class="num">02</span>
+        <span class="num" aria-hidden="true">02</span>
         <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 26h22M8 22v-6M15 22V9M22 22v-9"/><path class="icon-motion" d="m7 11 7-5 7 3 4-4"/></svg></div>
         <h3>Gerador de relatórios dinâmicos</h3>
         <p>Transforme dados da sua operação em relatórios claros e atualizados, prontos para apoiar decisões.</p>
       </div>
       <div class="card">
-        <span class="num">03</span>
+        <span class="num" aria-hidden="true">03</span>
         <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8v5M10 20l-3 3M22 20l3 3"/><circle class="icon-motion" cx="16" cy="17" r="5"/><circle cx="16" cy="5" r="2"/><circle cx="5" cy="25" r="2"/><circle cx="27" cy="25" r="2"/></svg></div>
         <h3>Customização de IAs agenticas</h3>
         <p>Adaptamos inteligências artificiais ao seu processo, para automatizar tarefas com o seu contexto e as suas regras.</p>
@@ -344,11 +345,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="v">Av. João Soares Silva, 29 — Penha, Itabira, MG</p>
     </div>
     <div class="contact-card">
-      <h3>&#128172; Comece pelo seu fluxo</h3>
-      <ul>
-        <li>&#10003;&nbsp; Conte um processo repetitivo ou um gargalo de atendimento.</li>
-        <li>&#10003;&nbsp; Mapeamos o processo e propomos a automação ideal para o seu caso.</li>
-        <li>&#10003;&nbsp; Receba uma proposta clara para automatizar com acompanhamento.</li>
+      <h3><span aria-hidden="true">&#128172;</span> Comece pelo seu fluxo</h3>
+      <ul role="list">
+        <li><span aria-hidden="true">&#10003;</span>&nbsp; Conte um processo repetitivo ou um gargalo de atendimento.</li>
+        <li><span aria-hidden="true">&#10003;</span>&nbsp; Mapeamos o processo e propomos a automação ideal para o seu caso.</li>
+        <li><span aria-hidden="true">&#10003;</span>&nbsp; Receba uma proposta clara para automatizar com acompanhamento.</li>
       </ul>
       <div class="contact-card-cta">
         <a class="btn btn-orange" href="https://wa.me/5531992263444?text=Ol%C3%A1%2C%20quero%20conversar%20sobre%20automa%C3%A7%C3%A3o%20de%20demandas%20com%20IA" target="_blank" rel="noopener">Chamar no WhatsApp</a>
@@ -357,6 +358,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -367,10 +369,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p style="margin-top:12px;">Gestão de demandas, automação por IA e software sob medida para empresas que querem operar com mais clareza e escala.</p>
       </div>
       <div>
-        <h5>Navegação</h5>
-        <a href="#topo">Início</a>
-        <a href="#solucoes">Soluções</a>
-        <a href="#contato">Contato</a>
+        <nav aria-label="Rodapé">
+          <h5>Navegação</h5>
+          <a href="#topo">Início</a>
+          <a href="#solucoes">Soluções</a>
+          <a href="#contato">Contato</a>
+        </nav>
       </div>
       <div>
         <h5>Empresa</h5>
