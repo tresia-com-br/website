@@ -109,11 +109,17 @@ header {
 .hero-card .logo-wrap { margin-bottom: 28px; }
 .hero-card .logo-wrap img { height: 46px; width: auto; display: block; }
 .hero-illustration { width: 100%; margin-top: 8px; }
-.hero-illustration svg { width: 100%; height: auto; display: block; }
-.flow-line { animation: flow-dash 1.4s linear infinite; }
-.flow-ring { transform-origin: 220px 120px; animation: flow-rotate 24s linear infinite; }
-.flow-core { transform-origin: 220px 120px; animation: flow-pulse 3s ease-in-out infinite; }
-@keyframes flow-dash { to { stroke-dashoffset: -20; } }
+.flow-layout { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.flow-step { position: relative; min-width: 0; text-align: center; padding: 18px 6px 16px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(160deg, #fff, #faf7fc); }
+.flow-step:not(:last-child)::after { content: "›"; position: absolute; z-index: 1; top: 38px; right: -11px; width: 14px; height: 20px; color: var(--purple); background: #fff; border-radius: 10px; font-weight: 900; line-height: 18px; text-align: center; }
+.flow-step:nth-child(2) { background: linear-gradient(160deg, #f3eafc, #fff); border-color: #d9c2e9; }
+.flow-step:nth-child(3) { background: linear-gradient(160deg, #fff8f1, #fff); border-color: #f8dec7; }
+.flow-step svg { width: min(100%, 72px); height: auto; display: block; margin: 0 auto 12px; }
+.flow-step strong { display: block; color: var(--ink); font-size: .82rem; line-height: 1.25; overflow-wrap: anywhere; }
+.flow-step small { display: block; margin-top: 5px; color: var(--slate); font-size: .72rem; line-height: 1.35; }
+.flow-ring, .flow-core { transform-origin: 40px 40px; }
+.flow-ring { animation: flow-rotate 24s linear infinite; }
+.flow-core { animation: flow-pulse 3s ease-in-out infinite; }
 @keyframes flow-rotate { to { transform: rotate(360deg); } }
 @keyframes flow-pulse { 50% { transform: scale(1.13); } }
 
@@ -127,7 +133,7 @@ section { padding: 92px 0; }
 
 /* ===== Serviços ===== */
 .services { background: var(--bg-soft); }
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 24px; }
 .card {
   background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 32px;
   transition: transform .25s, box-shadow .25s; position: relative; overflow: hidden;
@@ -200,8 +206,17 @@ footer { background: var(--purple-dark); color: #d8c9ea; padding: 44px 0 30px; }
   .contact-grid .contact-card { order: -1; }
   section { padding: 68px 0; }
 }
+@media (max-width: 480px) {
+  .hero-card { padding: 24px; }
+  .flow-layout { grid-template-columns: 1fr; gap: 10px; }
+  .flow-step { display: flex; align-items: center; gap: 16px; text-align: left; padding: 12px 16px; }
+  .flow-step svg { flex: 0 0 58px; width: 58px; margin: 0; }
+  .flow-step:not(:last-child)::after { top: auto; right: auto; left: 38px; bottom: -15px; transform: rotate(90deg); }
+  .flow-step strong { font-size: .9rem; }
+  .flow-step small { font-size: .8rem; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .flow-line, .flow-ring, .flow-core, .icon-motion { animation: none; }
+  .flow-ring, .flow-core, .icon-motion { animation: none; }
 }
 </style>
 </head>
@@ -244,59 +259,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="logo-wrap">
         <img src="logo.webp" width="700" height="278" alt="TRESIA — Inteligência Artificial">
       </div>
-      <div class="hero-illustration">
-        <svg viewBox="0 0 440 240" xmlns="http://www.w3.org/2000/svg" aria-label="Fluxo de gestão com IA: entrada, processamento e resultado">
-          <defs>
-            <linearGradient id="gradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#64049f;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#9b3fd4;stop-opacity:1" />
-            </linearGradient>
-            <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#ff7c06;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#ffa654;stop-opacity:1" />
-            </linearGradient>
-          </defs>
-          <circle cx="220" cy="120" r="90" fill="#f3eafc" opacity="0.6"/>
-          <circle cx="80" cy="120" r="50" fill="#fff" stroke="#eadff2" stroke-width="2"/>
-          <circle cx="360" cy="120" r="50" fill="#fff" stroke="#eadff2" stroke-width="2"/>
-          <path class="flow-line" d="M130 120 L160 120" stroke="#c9aede" stroke-width="3" stroke-dasharray="6 4"/>
-          <path class="flow-line" d="M280 120 L310 120" stroke="#c9aede" stroke-width="3" stroke-dasharray="6 4"/>
-          <polygon points="160,120 152,115 152,125" fill="#c9aede"/>
-          <polygon points="310,120 302,115 302,125" fill="#c9aede"/>
-          <rect x="40" y="85" width="80" height="70" rx="14" fill="#fff" stroke="#64049f" stroke-width="2"/>
-          <circle cx="80" cy="110" r="16" fill="url(#gradPurple)"/>
-          <rect x="76" y="101" width="8" height="14" rx="4" fill="#fff"/>
-          <path d="M76 115 L76 118 Q76 122 80 122 Q84 122 84 118 L84 115" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M80 122 L80 126 M76 126 L84 126" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-          <path d="M88 106 Q92 110 88 114" stroke="#ffa654" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M92 103 Q97 110 92 117" stroke="#ff7c06" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <rect x="62" y="130" width="36" height="6" rx="3" fill="#eadff2"/>
-          <rect x="70" y="140" width="20" height="6" rx="3" fill="#eadff2"/>
-          <circle cx="220" cy="120" r="90" fill="#f3eafc" opacity="0.8"/>
-          <circle cx="220" cy="120" r="60" fill="url(#gradPurple)"/>
-          <circle cx="220" cy="120" r="46" fill="#fff"/>
-          <circle class="flow-ring" cx="220" cy="120" r="58" fill="none" stroke="#c9aede" stroke-width="2" stroke-dasharray="3 6"/>
-          <path d="M220 92 L220 104 M220 136 L220 148 M192 120 L204 120 M236 120 L248 120 M203 95 L211 103 M229 137 L237 145 M203 145 L211 137 M229 103 L237 95" stroke="#64049f" stroke-width="3" stroke-linecap="round"/>
-          <circle class="flow-core" cx="220" cy="120" r="12" fill="url(#gradOrange)"/>
-          <circle cx="220" cy="120" r="5" fill="#fff"/>
-          <circle cx="220" cy="66" r="4" fill="url(#gradPurple)"/>
-          <circle cx="174" cy="120" r="4" fill="url(#gradPurple)"/>
-          <circle cx="266" cy="120" r="4" fill="url(#gradPurple)"/>
-          <line x1="220" y1="70" x2="220" y2="60" stroke="#c9aede" stroke-width="1.5"/>
-          <line x1="178" y1="120" x2="166" y2="120" stroke="#c9aede" stroke-width="1.5"/>
-          <line x1="262" y1="120" x2="274" y2="120" stroke="#c9aede" stroke-width="1.5"/>
-          <rect x="320" y="85" width="80" height="70" rx="14" fill="#fff" stroke="#ff7c06" stroke-width="2"/>
-          <rect x="340" y="130" width="10" height="16" rx="2" fill="#eadff2"/>
-          <rect x="355" y="120" width="10" height="26" rx="2" fill="url(#gradOrange)"/>
-          <rect x="370" y="110" width="10" height="36" rx="2" fill="url(#gradPurple)"/>
-          <path d="M338 118 L348 108 L358 116 L368 104" stroke="#ff7c06" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <text x="80" y="180" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="13" font-weight="700" fill="#1a1030">Entrada</text>
-          <text x="80" y="194" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="11" fill="#5b5470">Por voz ou texto</text>
-          <text x="220" y="196" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="13" font-weight="700" fill="#1a1030">Processamento</text>
-          <text x="220" y="210" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="11" fill="#5b5470">IA organiza e direciona</text>
-          <text x="360" y="180" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="13" font-weight="700" fill="#1a1030">Resultado</text>
-          <text x="360" y="194" text-anchor="middle" font-family="Segoe UI, system-ui, sans-serif" font-size="11" fill="#5b5470">Decisões e relatórios</text>
-        </svg>
+      <div class="hero-illustration" aria-label="Fluxo de gestão com IA">
+        <div class="flow-layout">
+          <div class="flow-step">
+            <svg viewBox="0 0 80 80" aria-hidden="true">
+              <circle cx="40" cy="40" r="35" fill="#f3eafc"/>
+              <rect x="22" y="22" width="36" height="36" rx="10" fill="#fff" stroke="#64049f" stroke-width="2"/>
+              <path d="M30 33h20M30 40h14M30 47h10" fill="none" stroke="#64049f" stroke-width="3" stroke-linecap="round"/>
+              <circle class="flow-core" cx="40" cy="40" r="34" fill="none" stroke="#c9aede" stroke-width="1.5" stroke-dasharray="3 6"/>
+            </svg>
+            <div><strong>Entrada</strong><small>Voz ou texto</small></div>
+          </div>
+          <div class="flow-step">
+            <svg viewBox="0 0 80 80" aria-hidden="true">
+              <circle cx="40" cy="40" r="35" fill="#eadcf5"/>
+              <circle class="flow-ring" cx="40" cy="40" r="29" fill="none" stroke="#9b3fd4" stroke-width="2" stroke-dasharray="4 6"/>
+              <path d="M40 20v8M40 52v8M20 40h8M52 40h8M26 26l6 6M48 48l6 6M54 26l-6 6M32 48l-6 6" stroke="#64049f" stroke-width="2.5" stroke-linecap="round"/>
+              <circle class="flow-core" cx="40" cy="40" r="10" fill="#ff7c06"/>
+              <circle cx="40" cy="40" r="4" fill="#fff"/>
+            </svg>
+            <div><strong>Processamento</strong><small>IA organiza e direciona</small></div>
+          </div>
+          <div class="flow-step">
+            <svg viewBox="0 0 80 80" aria-hidden="true">
+              <circle cx="40" cy="40" r="35" fill="#fff0e2"/>
+              <rect x="22" y="22" width="36" height="36" rx="10" fill="#fff" stroke="#ff7c06" stroke-width="2"/>
+              <path d="M30 50V42M40 50V35M50 50V29" stroke="#64049f" stroke-width="4" stroke-linecap="round"/>
+              <circle class="flow-core" cx="40" cy="40" r="34" fill="none" stroke="#ffb677" stroke-width="1.5" stroke-dasharray="3 6"/>
+            </svg>
+            <div><strong>Resultado</strong><small>Decisões e relatórios</small></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
