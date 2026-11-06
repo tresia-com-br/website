@@ -110,6 +110,12 @@ header {
 .hero-card .logo-wrap img { height: 46px; width: auto; display: block; }
 .hero-illustration { width: 100%; margin-top: 8px; }
 .hero-illustration svg { width: 100%; height: auto; display: block; }
+.flow-line { animation: flow-dash 1.4s linear infinite; }
+.flow-ring { transform-origin: 220px 120px; animation: flow-rotate 24s linear infinite; }
+.flow-core { transform-origin: 220px 120px; animation: flow-pulse 3s ease-in-out infinite; }
+@keyframes flow-dash { to { stroke-dashoffset: -20; } }
+@keyframes flow-rotate { to { transform: rotate(360deg); } }
+@keyframes flow-pulse { 50% { transform: scale(1.13); } }
 
 /* ===== Section base ===== */
 section { padding: 92px 0; }
@@ -133,6 +139,11 @@ section { padding: 92px 0; }
 }
 .card:nth-child(2) .icon { background: linear-gradient(135deg, var(--orange), var(--orange-light)); color: #3d2100; }
 .card:nth-child(3) .icon { background: linear-gradient(135deg, var(--purple-dark), var(--purple)); }
+.card .icon svg { width: 30px; height: 30px; overflow: visible; }
+.icon-motion { animation: icon-pulse 3s ease-in-out infinite; transform-origin: center; }
+.card:nth-child(2) .icon-motion { animation-delay: -.8s; }
+.card:nth-child(3) .icon-motion { animation-delay: -1.6s; }
+@keyframes icon-pulse { 50% { opacity: .55; transform: scale(.88); } }
 .card h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; }
 .card p { color: var(--slate); font-size: .95rem; }
 .card .num { position: absolute; top: 18px; right: 22px; font-size: 2.4rem; font-weight: 900; color: #c9aede; }
@@ -188,6 +199,9 @@ footer { background: var(--purple-dark); color: #d8c9ea; padding: 44px 0 30px; }
   .hero-grid { padding: 48px 0; }
   .contact-grid .contact-card { order: -1; }
   section { padding: 68px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-line, .flow-ring, .flow-core, .icon-motion { animation: none; }
 }
 </style>
 </head>
@@ -245,8 +259,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <circle cx="220" cy="120" r="90" fill="#f3eafc" opacity="0.6"/>
           <circle cx="80" cy="120" r="50" fill="#fff" stroke="#eadff2" stroke-width="2"/>
           <circle cx="360" cy="120" r="50" fill="#fff" stroke="#eadff2" stroke-width="2"/>
-          <path d="M130 120 L160 120" stroke="#c9aede" stroke-width="3" stroke-dasharray="6 4"/>
-          <path d="M280 120 L310 120" stroke="#c9aede" stroke-width="3" stroke-dasharray="6 4"/>
+          <path class="flow-line" d="M130 120 L160 120" stroke="#c9aede" stroke-width="3" stroke-dasharray="6 4"/>
+          <path class="flow-line" d="M280 120 L310 120" stroke="#c9aede" stroke-width="3" stroke-dasharray="6 4"/>
           <polygon points="160,120 152,115 152,125" fill="#c9aede"/>
           <polygon points="310,120 302,115 302,125" fill="#c9aede"/>
           <rect x="40" y="85" width="80" height="70" rx="14" fill="#fff" stroke="#64049f" stroke-width="2"/>
@@ -261,9 +275,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <circle cx="220" cy="120" r="90" fill="#f3eafc" opacity="0.8"/>
           <circle cx="220" cy="120" r="60" fill="url(#gradPurple)"/>
           <circle cx="220" cy="120" r="46" fill="#fff"/>
-          <circle cx="220" cy="120" r="58" fill="none" stroke="#c9aede" stroke-width="2" stroke-dasharray="3 6"/>
+          <circle class="flow-ring" cx="220" cy="120" r="58" fill="none" stroke="#c9aede" stroke-width="2" stroke-dasharray="3 6"/>
           <path d="M220 92 L220 104 M220 136 L220 148 M192 120 L204 120 M236 120 L248 120 M203 95 L211 103 M229 137 L237 145 M203 145 L211 137 M229 103 L237 95" stroke="#64049f" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="220" cy="120" r="12" fill="url(#gradOrange)"/>
+          <circle class="flow-core" cx="220" cy="120" r="12" fill="url(#gradOrange)"/>
           <circle cx="220" cy="120" r="5" fill="#fff"/>
           <circle cx="220" cy="66" r="4" fill="url(#gradPurple)"/>
           <circle cx="174" cy="120" r="4" fill="url(#gradPurple)"/>
@@ -300,19 +314,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="cards">
       <div class="card">
         <span class="num">01</span>
-        <div class="icon">&#60;&#47;&#62;</div>
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="5" width="20" height="22" rx="3"/><path d="M11 12h10M11 17h10M11 22h6"/><circle class="icon-motion" cx="24" cy="23" r="4" fill="currentColor" stroke="none"/></svg></div>
         <h3>Gerenciador de demandas</h3>
         <p>Centralize pedidos, tarefas e solicitações em um só lugar, com acompanhamento de cada etapa até a conclusão.</p>
       </div>
       <div class="card">
         <span class="num">02</span>
-        <div class="icon">&#9672;</div>
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 26h22M8 22v-6M15 22V9M22 22v-9"/><path class="icon-motion" d="m7 11 7-5 7 3 4-4"/></svg></div>
         <h3>Gerador de relatórios dinâmicos</h3>
         <p>Transforme dados da sua operação em relatórios claros e atualizados, prontos para apoiar decisões.</p>
       </div>
       <div class="card">
         <span class="num">03</span>
-        <div class="icon">&#9670;</div>
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8v5M10 20l-3 3M22 20l3 3"/><circle class="icon-motion" cx="16" cy="17" r="5"/><circle cx="16" cy="5" r="2"/><circle cx="5" cy="25" r="2"/><circle cx="27" cy="25" r="2"/></svg></div>
         <h3>Customização de IAs agenticas</h3>
         <p>Adaptamos inteligências artificiais ao seu processo, para automatizar tarefas com o seu contexto e as suas regras.</p>
       </div>
