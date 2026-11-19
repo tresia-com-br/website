@@ -98,7 +98,7 @@ header {
 header.scrolled { border-bottom-color: var(--line); background: rgba(251,249,246,.94); }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
 .brand { display: flex; align-items: center; text-decoration: none; }
-.brand img { height: 34px; width: auto; }
+.brand img { height: 40px; width: auto; }
 .nav-links { display: flex; gap: 6px; align-items: center; }
 .nav-links a:not(.btn) {
   text-decoration: none; color: var(--muted); font-weight: 600; font-size: .94rem;
@@ -129,7 +129,10 @@ header.scrolled { border-bottom-color: var(--line); background: rgba(251,249,246
 }
 .hero-glow { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; }
 .hero-glow.g1 { width: 520px; height: 520px; background: rgba(100,4,159,.16); top: -200px; right: -120px; }
-.hero-glow.g2 { width: 380px; height: 380px; background: rgba(255,124,6,.16); top: 260px; right: 280px; }
+.hero-glow.g2 { width: 380px; height: 380px; background: rgba(255,124,6,.1); top: 260px; right: 280px; }
+/* Imagem dinâmica: fluxo de demandas desenhado em canvas (decorativo) */
+.hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
+.hero-canvas.ready { opacity: 1; }
 .hero-grid { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; padding-bottom: 72px; }
 .eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -152,8 +155,13 @@ header.scrolled { border-bottom-color: var(--line); background: rgba(251,249,246
 .demo {
   position: relative; background: #fff; border-radius: 26px; padding: 22px;
   box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 40px 80px -30px rgba(61,2,99,.35), 0 0 0 1px var(--line);
+  transform: perspective(1400px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .6s cubic-bezier(.2,.7,.2,1);
 }
-.demo-bar { display: flex; align-items: center; justify-content: space-between; padding: 2px 4px 16px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+.demo-flow { transition: opacity .35s ease; }
+.demo.leaving .demo-flow { opacity: 0; }
+.demo.replay .demo-step, .demo.replay .bars i { animation: none; }
+.bubble .q { display: block; min-height: 3.2em; }.demo-bar { display: flex; align-items: center; justify-content: space-between; padding: 2px 4px 16px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
 .demo-title { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: .92rem; }
 .demo-title img { height: 18px; width: auto; }
 .live { display: inline-flex; align-items: center; gap: 6px; font-size: .75rem; font-weight: 700; color: #15803d; background: #ecfdf3; padding: 4px 10px; border-radius: 999px; }
@@ -227,12 +235,18 @@ section.block { padding: 112px 0; }
   margin-bottom: 44px; letter-spacing: .05em;
 }
 .steps li::after {
-  content: ""; position: absolute; top: 34px; left: 64px; right: 30px; height: 2px;
-  background: linear-gradient(90deg, var(--line), transparent);
+  content: ""; position: absolute; top: 40px; left: 64px; right: 76px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--orange));
+  opacity: .35; transform-origin: left;
 }
+.js .steps li::after { transform: scaleX(0); transition: transform 1s .35s cubic-bezier(.65,0,.35,1); }
+.js .steps li.in-view::after { transform: none; }
+.steps li:nth-child(2)::after { transition-delay: .55s; }
+.steps li:nth-child(3)::after { transition-delay: .75s; }
+.steps li .step-ico { position: absolute; top: 24px; right: 26px; }
 .steps li:last-child { background: var(--ink); color: #fff; box-shadow: none; }
 .steps li:last-child::before { color: var(--orange); }
-.steps li:last-child::after { background: linear-gradient(90deg, rgba(255,255,255,.18), transparent); }
+.steps li:last-child::after { opacity: .6; }
 .steps h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 10px; }
 .steps p { color: var(--muted); }
 .steps li:last-child p { color: #cfc4dc; }
@@ -374,6 +388,8 @@ footer { background: var(--night); color: #c9bcd8; border-top: 1px solid rgba(25
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .demo-step, .float-tag { opacity: 1; transform: none; }
   .hero h1 .hl path, .chart .line { stroke-dashoffset: 0; }
+  .js .steps li::after { transform: none; }
+  .demo { transform: none; }
   .js .reveal { opacity: 1; transform: none; }
 }
 </style>
@@ -409,8 +425,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero" id="topo">
   <span class="hero-glow g1" aria-hidden="true"></span>
   <span class="hero-glow g2" aria-hidden="true"></span>
+  <canvas class="hero-canvas" aria-hidden="true"></canvas>
   <div class="container hero-grid">
-    <div>
+    <div class="hero-copy">
       <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Soluções de IA &amp; Automação</span>
       <h1>Gestão com IA, do <span class="hl">pedido ao resultado<svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 18 C 90 6, 210 4, 396 12" fill="none" stroke="#ff7c06" stroke-width="7" stroke-linecap="round"/></svg></span></h1>
       <p class="sub">A TRESIA desenvolve soluções de IA que organizam demandas, automatizam processos e transformam dados em relatórios e decisões.</p>
@@ -426,14 +443,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="demo-title"><img src="logo.webp" width="700" height="278" alt="">Central de demandas</span>
         <span class="live">ao vivo</span>
       </div>
-      <div aria-hidden="true">
+      <div class="demo-flow" aria-hidden="true">
         <div class="demo-step s1">
           <span class="step-ico"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="6" height="10" rx="3"/><path d="M4 9a6 6 0 0 0 12 0M10 15v3"/></svg></span>
           <div>
             <p class="step-label">Entrada · voz ou texto</p>
             <div class="bubble">
-              <div class="wave"><i style="height:40%"></i><i style="height:80%"></i><i style="height:55%"></i><i style="height:100%"></i><i style="height:65%"></i><i style="height:35%"></i><i style="height:75%"></i><i style="height:50%"></i><i style="height:90%"></i><i style="height:45%"></i><span>0:12</span></div>
-              “Preciso do relatório de atendimentos do mês até sexta.”
+              <div class="wave"><i style="height:40%"></i><i style="height:80%"></i><i style="height:55%"></i><i style="height:100%"></i><i style="height:65%"></i><i style="height:35%"></i><i style="height:75%"></i><i style="height:50%"></i><i style="height:90%"></i><i style="height:45%"></i><span class="t">0:12</span></div>
+              <span class="q">“Preciso do relatório de atendimentos do mês até sexta.”</span>
             </div>
           </div>
         </div>
@@ -482,15 +499,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p>Cada solução segue o mesmo princípio: receber a demanda como ela chega, organizar com IA e devolver um resultado pronto para usar.</p>
     </div>
     <ol class="steps">
-      <li class="reveal">
+      <li class="reveal s1">
+        <span class="step-ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="6" height="10" rx="3"/><path d="M4 9a6 6 0 0 0 12 0M10 15v3"/></svg></span>
         <h3>Entrada</h3>
         <p>Pedidos, tarefas e solicitações chegam por voz ou texto e ficam registrados em um só lugar.</p>
       </li>
-      <li class="reveal">
+      <li class="reveal s2">
+        <span class="step-ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v3M10 15v3M2 10h3M15 10h3M4.5 4.5l2 2M13.5 13.5l2 2M15.5 4.5l-2 2M6.5 13.5l-2 2"/><circle cx="10" cy="10" r="2.5"/></svg></span>
         <h3>Processamento</h3>
         <p>A IA interpreta cada demanda, organiza as informações e direciona para quem precisa agir.</p>
       </li>
-      <li class="reveal">
+      <li class="reveal s3">
+        <span class="step-ico" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 16V11M10 16V5M16 16V8"/></svg></span>
         <h3>Resultado</h3>
         <p>Você acompanha cada etapa até a conclusão e recebe relatórios claros para apoiar decisões.</p>
       </li>
@@ -701,6 +721,203 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   } else {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
   }
+
+  // ===== Imagem dinâmica do hero =====
+  // Partículas (demandas) fluem até o card central e saem como resultados.
+  // Pausa fora da tela/aba oculta; com movimento reduzido desenha um único quadro.
+  (() => {
+    const hero = document.querySelector('.hero');
+    const canvas = hero && hero.querySelector('.hero-canvas');
+    const demo = hero && hero.querySelector('.demo');
+    const copy = hero && hero.querySelector('.hero-copy');
+    if (!canvas || !demo || !copy || !canvas.getContext) return;
+    const ctx = canvas.getContext('2d');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const fine = window.matchMedia('(pointer: fine) and (min-width: 1001px)');
+    const PURPLE = '100,4,159', ORANGE = '255,124,6';
+    const pointer = { x: -1e4, y: -1e4 };
+    let W = 0, H = 0, F = { x: 0, y: 0 }, box = null, parts = [];
+    let raf = 0, last = 0, onScreen = true;
+
+    const bez = (p, t) => {
+      const u = 1 - t;
+      return {
+        x: u * u * p.S.x + 2 * u * t * p.C.x + t * t * p.E.x,
+        y: u * u * p.S.y + 2 * u * t * p.C.y + t * t * p.E.y
+      };
+    };
+    const jitter = (n) => (Math.random() - .5) * n;
+
+    function spawn(scatter) {
+      const out = Math.random() < .35;
+      let S, E;
+      if (!out) {
+        S = Math.random() < .7 ? { x: -10, y: F.y + jitter(H * .9) } : { x: Math.random() * W * .8, y: -10 };
+        E = { x: F.x + jitter(60), y: F.y + jitter(60) };
+      } else {
+        S = { x: F.x + jitter(40), y: F.y + jitter(40) };
+        E = Math.random() < .6 ? { x: W + 10, y: F.y + jitter(H * .8) } : { x: F.x + jitter(W * .6), y: H + 10 };
+      }
+      const dx = E.x - S.x, dy = E.y - S.y, len = Math.hypot(dx, dy) || 1, bend = jitter(.6 * len);
+      const C = { x: (S.x + E.x) / 2 - dy / len * bend, y: (S.y + E.y) / 2 + dx / len * bend };
+      const speed = (50 + Math.random() * 60) * (out ? 1.4 : 1);
+      return { S, C, E, out, t: scatter ? Math.random() : 0, v: speed / len,
+               r: out ? 1.6 + Math.random() * 1.4 : 1.2 + Math.random() * 1.6, ox: 0, oy: 0 };
+    }
+
+    function layout() {
+      lockHeight();
+      const h = hero.getBoundingClientRect();
+      const widthChanged = h.width !== W;
+      W = h.width; H = h.height;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const d = demo.getBoundingClientRect();
+      F = { x: d.left - h.left + d.width / 2, y: d.top - h.top + d.height / 2 };
+      const c = copy.getBoundingClientRect();
+      box = { l: c.left - h.left - 24, t: c.top - h.top - 24, r: c.right - h.left + 24, b: c.bottom - h.top + 24 };
+      const target = Math.round(Math.min(90, Math.max(24, W * H / 14000)));
+      // Só redistribui as partículas quando a largura muda (evita "saltos" em ajustes de altura)
+      if (widthChanged || !parts.length) parts = Array.from({ length: target }, () => spawn(true));
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, W, H);
+      const pts = [];
+      for (const p of parts) {
+        const a = bez(p, p.t);
+        const dx = a.x - pointer.x, dy = a.y - pointer.y, d = Math.hypot(dx, dy), R = 130;
+        let tx = 0, ty = 0;
+        if (d < R && d > 0) { const f = (1 - d / R) * 28; tx = dx / d * f; ty = dy / d * f; }
+        p.ox += (tx - p.ox) * .12; p.oy += (ty - p.oy) * .12;
+        const x = a.x + p.ox, y = a.y + p.oy;
+        // Atenua atrás do texto para manter o contraste do título e do parágrafo
+        const behindText = x > box.l && x < box.r && y > box.t && y < box.b;
+        const alpha = Math.min(1, p.t * 6, (1 - p.t) * 6) * (behindText ? .22 : 1);
+        if (alpha <= 0) continue;
+        const col = p.out ? ORANGE : PURPLE;
+        const b = bez(p, Math.max(0, p.t - .04));
+        ctx.strokeStyle = `rgba(${col},${.28 * alpha})`;
+        ctx.lineWidth = p.r * .9;
+        ctx.beginPath(); ctx.moveTo(b.x + p.ox, b.y + p.oy); ctx.lineTo(x, y); ctx.stroke();
+        ctx.fillStyle = `rgba(${col},${.6 * alpha})`;
+        ctx.beginPath(); ctx.arc(x, y, p.r, 0, Math.PI * 2); ctx.fill();
+        if (!p.out) pts.push({ x, y, alpha });
+      }
+      // Conexões finas entre demandas próximas (efeito de rede)
+      ctx.lineWidth = 1;
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+          if (d < 90) {
+            ctx.strokeStyle = `rgba(${PURPLE},${.14 * (1 - d / 90) * Math.min(pts[i].alpha, pts[j].alpha)})`;
+            ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function frame(now) {
+      const dt = last ? Math.min((now - last) / 1000, .05) : 0;
+      last = now;
+      for (let i = 0; i < parts.length; i++) {
+        parts[i].t += parts[i].v * dt;
+        if (parts[i].t >= 1) parts[i] = spawn(false);
+      }
+      render();
+      raf = requestAnimationFrame(frame);
+    }
+
+    const canAnimate = () => !reduce.matches && onScreen && !document.hidden;
+    function sync() {
+      cancelAnimationFrame(raf); raf = 0; last = 0;
+      render();
+      if (canAnimate()) raf = requestAnimationFrame(frame);
+      syncCycle();
+    }
+
+    // Interação: partículas desviam do cursor e o card inclina levemente
+    hero.addEventListener('pointermove', (e) => {
+      const h = hero.getBoundingClientRect();
+      pointer.x = e.clientX - h.left; pointer.y = e.clientY - h.top;
+      if (fine.matches && !reduce.matches) {
+        const d = demo.getBoundingClientRect();
+        const nx = Math.max(-1, Math.min(1, (e.clientX - (d.left + d.width / 2)) / (window.innerWidth / 2)));
+        const ny = Math.max(-1, Math.min(1, (e.clientY - (d.top + d.height / 2)) / (window.innerHeight / 2)));
+        demo.style.setProperty('--ry', (nx * 6).toFixed(2) + 'deg');
+        demo.style.setProperty('--rx', (-ny * 5).toFixed(2) + 'deg');
+      }
+    });
+    hero.addEventListener('pointerleave', () => {
+      pointer.x = pointer.y = -1e4;
+      demo.style.removeProperty('--rx'); demo.style.removeProperty('--ry');
+    });
+
+    // Demo "ao vivo": alterna entre exemplos de pedidos reais
+    const scenarios = [
+      { q: '“Preciso do relatório de atendimentos do mês até sexta.”', t: '0:12',
+        chips: ['Relatório', 'Prazo: sexta', '→ Equipe de gestão'],
+        title: 'Relatório de atendimentos', note: 'Gerado automaticamente', bars: [40, 62, 48, 78, 100] },
+      { q: '“Cliente pediu um orçamento de manutenção para amanhã.”', t: '0:09',
+        chips: ['Orçamento', 'Prazo: amanhã', '→ Comercial'],
+        title: 'Proposta de orçamento', note: 'Pronta para revisão', bars: [55, 35, 70, 60, 90] },
+      { q: '“A máquina da linha 2 parou. Preciso de vistoria hoje.”', t: '0:15',
+        chips: ['Ocorrência', 'Prioridade: alta', '→ Manutenção'],
+        title: 'Ordem de serviço aberta', note: 'Equipe notificada', bars: [30, 50, 85, 65, 100] }
+    ];
+    const el = {
+      q: demo.querySelector('.bubble .q'), t: demo.querySelector('.wave .t'),
+      chips: demo.querySelectorAll('.chips .chip'), title: demo.querySelector('.report strong'),
+      note: demo.querySelector('.report small'), bars: demo.querySelectorAll('.bars i')
+    };
+    const flow = demo.querySelector('.demo-flow');
+    let idx = 0, cycle = 0;
+    function apply(s) {
+      el.q.textContent = s.q; el.t.textContent = s.t;
+      el.chips.forEach((c, i) => { c.textContent = s.chips[i]; });
+      el.title.textContent = s.title; el.note.textContent = s.note;
+      el.bars.forEach((b, i) => { b.style.height = s.bars[i] + '%'; });
+    }
+    // Fixa a altura do card na do exemplo mais alto, para o hero não "pular" a cada troca
+    function lockHeight() {
+      flow.style.minHeight = '';
+      let max = 0;
+      scenarios.forEach((s) => { apply(s); max = Math.max(max, flow.offsetHeight); });
+      apply(scenarios[idx]);
+      flow.style.minHeight = max + 'px';
+    }
+    function nextScenario() {
+      demo.classList.add('leaving');
+      setTimeout(() => {
+        idx = (idx + 1) % scenarios.length;
+        apply(scenarios[idx]);
+        demo.classList.add('replay');
+        void demo.offsetWidth; // reinicia as animações de entrada
+        demo.classList.remove('replay', 'leaving');
+      }, 380);
+    }
+    function syncCycle() {
+      clearInterval(cycle); cycle = 0;
+      if (canAnimate()) cycle = setInterval(nextScenario, 7000);
+    }
+
+    let pending = 0;
+    const relayout = () => {
+      cancelAnimationFrame(pending);
+      pending = requestAnimationFrame(() => { layout(); render(); });
+    };
+    layout();
+    if ('ResizeObserver' in window) new ResizeObserver(relayout).observe(hero);
+    window.addEventListener('load', relayout);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; sync(); }).observe(hero);
+    }
+    document.addEventListener('visibilitychange', sync);
+    reduce.addEventListener('change', sync);
+    sync();
+    canvas.classList.add('ready');
+  })();
 </script>
 
 </body>
